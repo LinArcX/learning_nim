@@ -26,18 +26,38 @@ White='\033[1;37m'
 
 NC='\033[0m' # No Color
 
-chat_build_debug()
+messanger_build_debug()
 {
   printf "${Blue}>> Building (debug) ${NC}\n"
   printf "${Blue}------------------------${NC}\n\n"
 
+  mkdir -p build/debug
   nim c -o:build/debug/client sources/client.nim
 }
 
-chat_build_release()
+messanger_build_release()
 {
   printf "${Blue}>> Building (release) ${NC}\n"
   printf "${Blue}------------------------${NC}\n\n"
 
+  mkdir -p build/release
   nim c -o:build/release/client -d:release sources/client.nim
+}
+
+messanger_run_debug()
+{
+  ./build/debug/client
+}
+
+messanger_run_release()
+{
+  ./build/release/client
+}
+
+messanger_clean()
+{
+  printf "${Blue}>> Cleaning build directory ${NC}\n"
+  printf "${Blue}------------------------${NC}\n\n"
+
+  rm -r build/*
 }
